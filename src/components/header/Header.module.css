@@ -1,0 +1,31 @@
+.navlogo {
+  width: 70px;
+  height: 30px;
+}
+
+.navitems {
+  color: #2699fb !important;
+}
+
+@media only screen and (min-width: 900px) {
+  .header {
+    margin: 0 auto 0 auto;
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 100%;
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 1;
+  }
+
+  .search {
+    margin-left: 1em;
+  }
+
+  .navlogo {
+    width: 90px;
+    height: 50px;
+  }
+}

@@ -1,0 +1,81 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 5em 10%;
+}
+
+.heading {
+  margin-bottom: 40px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 40px;
+}
+
+.check {
+  margin-left: 40px;
+}
+
+.check label {
+  margin-left: 5px;
+}
+
+.fileUpload {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 700px) {
+  .mainContainer {
+    margin: 10%;
+  }
+
+  .heading {
+    text-align: center;
+  }
+
+  .form {
+    display: block;
+  }
+
+  .left {
+    width: 100%;
+    align-items: center;
+  }
+  .right {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .right h5 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .check {
+    margin-left: 0;
+  }
+
+  .check label {
+    margin-left: 0;
+  }
+}
