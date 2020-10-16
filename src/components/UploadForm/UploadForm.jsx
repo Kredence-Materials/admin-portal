@@ -140,8 +140,8 @@ class UploadForm extends Component {
             </div>
 
             <div className={styles.check}>
-              <input type="radio" value="Trump Card" name="option" />
-              <label>Trump Card</label>
+              <input type="radio" value="TREM" name="option" />
+              <label>TREM Card</label>
             </div>
           </div>
 
