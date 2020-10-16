@@ -77,22 +77,31 @@ class UploadForm extends Component {
       .then((res) => {
         if (res.status !== 200) throw new Error();
         alert(res.data.Message);
+        this.setState({
+          officialName: "",
+          productNumber: 0,
+          batchNumber: 0,
+          productName: "",
+          type: "COA",
+          file: null,
+          fileName: "Choose File",
+        });
       })
       .catch((err) => {
-        const catchError = err.response.data;
-        alert(catchError.Message);
+        if (err.response) {
+          const catchError = err.response.data;
+          alert(catchError.Message);
+          this.setState({
+            officialName: "",
+            productNumber: 0,
+            batchNumber: 0,
+            productName: "",
+            type: "COA",
+            file: null,
+            fileName: "Choose File",
+          });
+        }
       });
-
-    this.setState({
-      officialName: "",
-      productNumber: 0,
-      batchNumber: 0,
-      productName: "",
-      type: "COA",
-      file: null,
-      fileName: "Choose File",
-      isCOA: true,
-    });
   };
 
   setType = (event) => {
