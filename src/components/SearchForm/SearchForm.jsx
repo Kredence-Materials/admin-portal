@@ -33,6 +33,7 @@ class SearchForm extends Component {
       fileUrl: null,
       fileName: "Choose File",
       isCOA: true,
+      officialName: "",
     };
   }
 
@@ -70,6 +71,7 @@ class SearchForm extends Component {
         this.setState({
           fileName: res.data.fileName,
           fileUrl: res.data.fileLink,
+          officialName: res.data.officialName,
         });
       })
       .catch((err) => {
@@ -173,6 +175,7 @@ class SearchForm extends Component {
               }}
             >
               {this.state.fileName}
+              Uploaded By : {this.state.officialName}
             </h1>
             <Button
               variant="contained"
