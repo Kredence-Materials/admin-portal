@@ -26,8 +26,7 @@ class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productNumber: 0,
-      batchNumber: 0,
+      batchNumber: null,
       productName: "",
       type: "COA",
       fileUrl: null,
@@ -44,12 +43,12 @@ class SearchForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    if (this.state.isCOA) {
-      if (!this.state.productNumber || !this.state.batchNumber) {
-        alert("All Fields Are Required");
-        return;
-      }
-    } else if (!this.state.productName) {
+    if (!this.state.productName) {
+      alert("All Fields Are Required");
+      return;
+    }
+
+    if (this.state.isCOA && !this.state.batchNumber) {
       alert("All Fields Are Required");
       return;
     }
@@ -57,12 +56,9 @@ class SearchForm extends Component {
     const form = new FormData();
     form.append("type", this.state.type);
 
-    if (this.state.isCOA) {
-      form.append("productNumber", this.state.productNumber);
-      form.append("batchNumber", this.state.batchNumber);
-    } else {
-      form.append("productName", this.state.productName);
-    }
+    form.append("productName", this.state.productName);
+
+    if (this.state.isCOA) form.append("batchNumber", this.state.batchNumber);
 
     axios
       .post("https://apikredence.herokuapp.com/file/get-document", form)
@@ -120,35 +116,24 @@ class SearchForm extends Component {
           </div>
 
           <div className={styles.left}>
-            {this.state.isCOA ? (
-              <>
-                <TextField
-                  id="standard-basic"
-                  label="Product Number"
-                  type="number"
-                  className={classes.fields}
-                  name="productNumber"
-                  value={this.state.productNumber}
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Batch Number"
-                  type="number"
-                  className={classes.fields}
-                  name="batchNumber"
-                  value={this.state.batchNumber}
-                  onChange={this.handleChange}
-                />
-              </>
-            ) : (
+            <TextField
+              id="standard-basic"
+              label="Product Name"
+              type="text"
+              className={classes.fields}
+              name="productName"
+              value={this.state.productName}
+              onChange={this.handleChange}
+            />
+
+            {this.state.isCOA && (
               <TextField
                 id="standard-basic"
-                label="Product Name"
-                type="text"
+                label="Batch Number"
+                type="number"
                 className={classes.fields}
-                name="productName"
-                value={this.state.productName}
+                name="batchNumber"
+                value={this.state.batchNumber}
                 onChange={this.handleChange}
               />
             )}

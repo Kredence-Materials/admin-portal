@@ -19,7 +19,6 @@ function App() {
           <Route exact path={["/", "/upload"]} component={UploadForm} />
           <Route exact path="/search" component={SearchForm} />
         </Switch>
-        <Footer />
       </Router>
     </div>
   );

@@ -16,10 +16,10 @@ function Header() {
         </Navbar.Brand>
 
         <Nav.Item style={{ marginLeft: "auto" }}>
-          <Nav.Link href="/upload">Upload PDF</Nav.Link>
+          <Nav.Link href="/upload">Upload</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/search">Search PDF</Nav.Link>
+          <Nav.Link href="/search">Search</Nav.Link>
         </Nav.Item>
       </Navbar>
     </div>

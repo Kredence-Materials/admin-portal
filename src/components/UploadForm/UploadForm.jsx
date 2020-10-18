@@ -24,9 +24,8 @@ class UploadForm extends Component {
     super(props);
     this.state = {
       officialName: "",
-      productNumber: 0,
-      batchNumber: 0,
       productName: "",
+      batchNumber: 0,
       type: "COA",
       file: null,
       fileName: "Choose File",
@@ -41,17 +40,7 @@ class UploadForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    if (this.state.isCOA) {
-      if (
-        !this.state.officialName ||
-        !this.state.productNumber ||
-        !this.state.batchNumber ||
-        !this.state.file
-      ) {
-        alert("All Fields Are Required");
-        return;
-      }
-    } else if (
+    if (
       !this.state.officialName ||
       !this.state.productName ||
       !this.state.file
@@ -60,17 +49,18 @@ class UploadForm extends Component {
       return;
     }
 
+    if (this.state.isCOA && !this.state.batchNumber) {
+      alert("All Fields Are Required");
+      return;
+    }
+
     const form = new FormData();
     form.append("type", this.state.type);
     form.append("file", this.state.file);
     form.append("officialName", this.state.officialName);
+    form.append("productName", this.state.productName);
 
-    if (this.state.isCOA) {
-      form.append("productNumber", this.state.productNumber);
-      form.append("batchNumber", this.state.batchNumber);
-    } else {
-      form.append("productName", this.state.productName);
-    }
+    if (this.state.isCOA) form.append("batchNumber", this.state.batchNumber);
 
     axios
       .post("https://apikredence.herokuapp.com/file/upload", form)
@@ -79,7 +69,6 @@ class UploadForm extends Component {
         alert(res.data.Message);
         this.setState({
           officialName: "",
-          productNumber: 0,
           batchNumber: 0,
           productName: "",
           type: "COA",
@@ -93,7 +82,6 @@ class UploadForm extends Component {
           alert(catchError.Message);
           this.setState({
             officialName: "",
-            productNumber: 0,
             batchNumber: 0,
             productName: "",
             type: "COA",
@@ -163,35 +151,25 @@ class UploadForm extends Component {
               value={this.state.officialName}
               onChange={this.handleChange}
             />
-            {this.state.isCOA ? (
-              <>
-                <TextField
-                  id="standard-basic"
-                  label="Product Number"
-                  type="number"
-                  className={classes.fields}
-                  name="productNumber"
-                  value={this.state.productNumber}
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Batch Number"
-                  type="number"
-                  className={classes.fields}
-                  name="batchNumber"
-                  value={this.state.batchNumber}
-                  onChange={this.handleChange}
-                />
-              </>
-            ) : (
+
+            <TextField
+              id="standard-basic"
+              label="Product Name"
+              type="text"
+              className={classes.fields}
+              name="productName"
+              value={this.state.productName}
+              onChange={this.handleChange}
+            />
+
+            {this.state.isCOA && (
               <TextField
                 id="standard-basic"
-                label="Product Name"
-                type="text"
+                label="Batch Number"
+                type="number"
                 className={classes.fields}
-                name="productName"
-                value={this.state.productName}
+                name="batchNumber"
+                value={this.state.batchNumber}
                 onChange={this.handleChange}
               />
             )}
