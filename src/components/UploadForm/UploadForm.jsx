@@ -25,7 +25,7 @@ class UploadForm extends Component {
     this.state = {
       officialName: "",
       productName: "",
-      batchNumber: 0,
+      batchNumber: null,
       type: "COA",
       file: null,
       fileName: "Choose File",
