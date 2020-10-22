@@ -26,7 +26,7 @@ class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      batchNumber: null,
+      batchNumber: "",
       productName: "",
       type: "COA",
       fileUrl: null,
@@ -130,7 +130,7 @@ class SearchForm extends Component {
               <TextField
                 id="standard-basic"
                 label="Batch Number"
-                type="number"
+                type="text"
                 className={classes.fields}
                 name="batchNumber"
                 value={this.state.batchNumber}

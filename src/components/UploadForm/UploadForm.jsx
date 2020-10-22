@@ -25,7 +25,7 @@ class UploadForm extends Component {
     this.state = {
       officialName: "",
       productName: "",
-      batchNumber: null,
+      batchNumber: "",
       type: "COA",
       file: null,
       fileName: "Choose File",
@@ -63,7 +63,7 @@ class UploadForm extends Component {
     if (this.state.isCOA) form.append("batchNumber", this.state.batchNumber);
 
     axios
-      .post("https://apikredence.herokuapp.com/file/upload", form)
+      .post("http://localhost:8080/file/upload", form)
       .then((res) => {
         if (res.status !== 200) throw new Error();
         alert(res.data.Message);
@@ -166,7 +166,7 @@ class UploadForm extends Component {
               <TextField
                 id="standard-basic"
                 label="Batch Number"
-                type="number"
+                type="text"
                 className={classes.fields}
                 name="batchNumber"
                 value={this.state.batchNumber}
