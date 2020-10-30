@@ -71,8 +71,10 @@ class SearchForm extends Component {
         });
       })
       .catch((err) => {
-        const catchError = err.response.data;
-        alert(catchError.Message);
+        if (err.response) {
+          const catchError = err.response.data;
+          alert(catchError.Message);
+        }
       });
   };
 

@@ -34,8 +34,10 @@ class AlertDialog extends React.Component {
         alert(res.data.Message);
       })
       .catch((err) => {
-        const catchError = err.response.data;
-        alert(catchError.Message);
+        if (err.response) {
+          const catchError = err.response.data;
+          alert(catchError.Message);
+        }
       });
     this.handleClose();
   };

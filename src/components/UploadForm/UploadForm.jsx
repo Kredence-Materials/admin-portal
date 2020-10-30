@@ -63,13 +63,13 @@ class UploadForm extends Component {
     if (this.state.isCOA) form.append("batchNumber", this.state.batchNumber);
 
     axios
-      .post("http://localhost:8080/file/upload", form)
+      .post("https://apikredence.herokuapp.com/file/upload", form)
       .then((res) => {
         if (res.status !== 200) throw new Error();
         alert(res.data.Message);
         this.setState({
           officialName: "",
-          batchNumber: 0,
+          batchNumber: "",
           productName: "",
           type: "COA",
           file: null,
